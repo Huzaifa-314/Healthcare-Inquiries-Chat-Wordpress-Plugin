@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
             console.log($('.current_user_id').val());
 
             // Create the message element
-            var $message = $("<div>", { class: "message " + (isReceived ? "sent" : "received") });
+            var $message = $("<div>", { class: "message " + (isReceived ? "received" : "sent") });
             var $messageContent = $("<div>", { class: "message-content" }).text(message.message);
 
             $message.append($messageContent);
