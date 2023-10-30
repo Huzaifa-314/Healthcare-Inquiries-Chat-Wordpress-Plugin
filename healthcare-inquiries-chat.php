@@ -52,6 +52,18 @@
 //
 
 
+// Shortcode function to display the chatdoc
+function display_doctor_panel() {
+    ob_start();
+    include(plugin_dir_path(__FILE__) . 'template/doctor_panel.php');
+    return ob_get_clean();
+}
+
+add_shortcode('display-doctor-panel', 'display_doctor_panel');
+//
+
+
+
 
 
 $chatbot_page_id = -1;
@@ -59,7 +71,7 @@ $chatdoc_page_id = -1;
 
 
 /////////////////////////////////////
-//create chatbot page
+//create doctor panel page
     add_action('init', 'create_chatbot_page');
 
     // Function to create a page and add a shortcode
@@ -88,6 +100,36 @@ $chatdoc_page_id = -1;
     }
 //
 
+
+/////////////////////////////////////
+//create doctor_panel page
+add_action('init', 'create_doctor_panel_page');
+
+// Function to create a page and add a shortcode
+function create_doctor_panel_page() {
+    $post_id = -1; // Initialize with -1 to check if the page exists
+
+    // Check if the "queue-chat" page already exists
+    $page = get_page_by_path('doctor_panel');
+
+    if ($page) {
+        // The page already exists, so update its content
+        $post_id = $page->ID;
+    } else {
+        // Create a new page
+        $post = array(
+            'post_title'   => 'doctor_panel',
+            'post_name'    => 'doctor_panel',
+            'post_content' => '[display-doctor-panel]', // Shortcode and content
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+        );
+        $post_id = wp_insert_post($post);
+    }
+    $doctor_panel_page_id = $post_id;
+    return $post_id;
+}
+//
 
 
 //////////////////////////////////////////////
