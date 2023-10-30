@@ -792,13 +792,13 @@ function create_doctor_panel_page() {
 
             foreach ($conversations as $conversation) {
                 // Retrieve post meta values for each conversation
-                $sender_id = get_post_meta($conversation->ID, 'hic_senders_id', true);
+                $sender_id = get_post_meta($conversation->ID, 'hic_sender_id', true);
                 $receiver_id = get_post_meta($conversation->ID, 'hic_receiver_id', true);
                 $message_content = get_post_meta($conversation->ID, 'hic_message', true);
 
                 // Create an array for each message
                 $message = array(
-                    'senders_id' => $sender_id,
+                    'sender_id' => $sender_id,
                     'receiver_id' => $receiver_id,
                     'message' => $message_content,
                 );

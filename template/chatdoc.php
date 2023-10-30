@@ -81,14 +81,14 @@ if (current_user_has_enquiry()) {
                                 // Customize the HTML structure for displaying the enquiry
                                 ?>
                                 <div class="enquiry-summary" data-enquiry-id="<?php echo $enquiry_id; ?>">
-                                    <div class="d-none current_user_id" value="<?php
+                                    <div class="d-none current_user_id"><?php
                                         if (is_user_logged_in()) {
                                             echo get_current_user_id();
                                         } else {
                                             // Generate a random user name (you can replace this logic as needed)
                                             echo session_id(); // Set to a default value or generate a unique ID
                                         }
-                                    ?>"></div>
+                                    ?></div>
                                     <div class="serial"><h3 class="m-0"><?php echo $serial; ?></h3></div>
                                     <div class="main-enquiry-part">
                                         <div class="name"><?php echo $user_name; ?></div>

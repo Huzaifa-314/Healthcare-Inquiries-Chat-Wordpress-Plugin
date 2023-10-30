@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
     }
 
     function displayConversation(messages) {
+        console.log(messages);
         var $chatboxMessages = $(".chatbox-messages");
 
         // Clear the current messages in the chatbox
@@ -18,10 +19,12 @@ jQuery(document).ready(function($) {
         // Iterate through the fetched messages and append them to the chatbox
         for (var i = 0; i < messages.length; i++) {
             var message = messages[i];
+            var userId = $('.current_user_id').text();
+            console.log(userId);
 
             // Determine whether the message is sent or received based on sender_id and receiver_id
-            var isReceived = message.senders_id !== $('.current_user_id'); // Adjust '1' as needed
-            console.log($('.current_user_id').val());
+            var isReceived = message.senders_id !== userId; // Adjust '1' as needed
+            
 
             // Create the message element
             var $message = $("<div>", { class: "message " + (isReceived ? "received" : "sent") });
@@ -50,7 +53,7 @@ jQuery(document).ready(function($) {
     // Add a click event listener to all elements with the class "enquiry-summary"
     $(".enquiry-summary").on("click", function() {
         var enquiryId = $(this).data("enquiry-id");
-        console.log(enquiryId);
+        // console.log(enquiryId);
         currentEnquiryId = enquiryId;
         // console.log(currentEnquiryId);
         autoScroll = true; // Re-enable auto-scroll
